@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2014 07:15:38 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.model.pojos.Usuario" table="USUARIO" schema="SISTEMA_TOO">
+        <id name="nombre" type="string">
+            <column name="NOMBRE" length="15" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="cl.model.pojos.Usuario" fetch="select">
+            <column name="USU_NOMBRE" length="15" />
+        </many-to-one>
+        <property name="contrasena" type="string">
+            <column name="CONTRASENA" length="30" not-null="true" />
+        </property>
+        <property name="correo" type="clob">
+            <column name="CORREO" not-null="true" />
+        </property>
+        <property name="rol" type="string">
+            <column name="ROL" length="50" not-null="true" />
+        </property>
+        <set name="reclamos" table="RECLAMO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NOMBRE" length="15" />
+            </key>
+            <one-to-many class="cl.model.pojos.Reclamo" />
+        </set>
+        <set name="usuarios" table="USUARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USU_NOMBRE" length="15" />
+            </key>
+            <one-to-many class="cl.model.pojos.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

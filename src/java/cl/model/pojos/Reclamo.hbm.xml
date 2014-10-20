@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2014 07:15:38 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.model.pojos.Reclamo" table="RECLAMO" schema="SISTEMA_TOO">
+        <id name="identificador" type="big_decimal">
+            <column name="IDENTIFICADOR" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="cl.model.pojos.Usuario" fetch="select">
+            <column name="NOMBRE" length="15" />
+        </many-to-one>
+        <property name="fecha" type="serializable">
+            <column name="FECHA" not-null="true" />
+        </property>
+        <property name="usuario_1" type="string">
+            <column name="USUARIO" length="50" not-null="true" />
+        </property>
+        <property name="titulo" type="string">
+            <column name="TITULO" length="50" />
+        </property>
+        <property name="cuerpo" type="string">
+            <column name="CUERPO" length="1000" not-null="true" />
+        </property>
+        <property name="sector" type="string">
+            <column name="SECTOR" length="25" not-null="true" />
+        </property>
+        <property name="lugarreclamado" type="string">
+            <column name="LUGARRECLAMADO" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
